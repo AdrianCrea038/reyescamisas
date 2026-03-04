@@ -1,0 +1,59 @@
+{
+    "hero": {
+        "titulo": "VISTE COMO UN",
+        "tituloResaltado": "REY",
+        "subtitulo": "Urban style para los que dominan la calle",
+        "imagen": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        "botonTexto": "VER COLECCIÓN"
+    },
+    "redesSociales": [
+        {
+            "nombre": "instagram",
+            "icono": "fab fa-instagram",
+            "url": "https://instagram.com/reyes.mx",
+            "activo": true
+        },
+        {
+            "nombre": "tiktok",
+            "icono": "fab fa-tiktok",
+            "url": "https://tiktok.com/@reyes.mx",
+            "activo": true
+        },
+        {
+            "nombre": "facebook",
+            "icono": "fab fa-facebook",
+            "url": "https://facebook.com/reyes.mx",
+            "activo": true
+        },
+        {
+            "nombre": "twitter",
+            "icono": "fab fa-x-twitter",
+            "url": "https://twitter.com/reyes.mx",
+            "activo": true
+        },
+        {
+            "nombre": "whatsapp",
+            "icono": "fab fa-whatsapp",
+            "url": "https://wa.me/521234567890",
+            "activo": true
+        }
+    ],
+    "contacto": {
+        "telefono": "+52 123 456 7890",
+        "whatsapp": "521234567890",
+        "email": "hola@reyes.mx",
+        "ubicacion": "CDMX, México"
+    },
+    "moneda": {
+        "simbolo": "$",
+        "codigo": "MXN",
+        "posicion": "antes"
+    },
+    "textos": {
+        "btnWhatsapp": "LO QUIERO",
+        "btnConsultar": "CONSULTAR POR WHATSAPP",
+        "newsletterTitulo": "¿Listo para ser un REY?",
+        "newsletterTexto": "Suscríbete y recibe 10% de descuento en tu primera compra",
+        "newsletterBoton": "QUIERO SER REY"
+    }
+}

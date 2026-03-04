@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "nombre": "CAMISA OXFORD WHITE",
+        "precio": 899,
+        "imagen": "https://images.unsplash.com/photo-1603252109303-2751441dd157?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80",
+        "colores": ["#FFFFFF", "#000000", "#1C4B62"],
+        "categoria": "formal",
+        "tipo": "manga-larga",
+        "descripcion": "Oxford premium, para los que mandan. Confeccionada con algodón egipcio para máximo confort.",
+        "tag": "NEW"
+    },
+    {
+        "id": 2,
+        "nombre": "STREET BLUE",
+        "precio": 699,
+        "imagen": "https://images.unsplash.com/photo-1598033121414-5e17e7f3a922?ixlib=rb-4.0.3&auto=format&fit=crop&w=735&q=80",
+        "colores": ["#1C4B62", "#E8A519", "#CD3318"],
+        "categoria": "casual",
+        "tipo": "manga-corta",
+        "descripcion": "Estilo urbano, vibra fresca. Perfecta para el día a día con un toque street.",
+        "tag": "HOT"
+    },
+    {
+        "id": 3,
+        "nombre": "LINEN KING",
+        "precio": 799,
+        "imagen": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?ixlib=rb-4.0.3&auto=format&fit=crop&w=880&q=80",
+        "colores": ["#E8A519", "#CD3318", "#1C4B62"],
+        "categoria": "casual",
+        "tipo": "manga-larga",
+        "descripcion": "Lino natural, para los reyes del verano. Fresca y elegante.",
+        "tag": "LIMITED"
+    },
+    {
+        "id": 4,
+        "nombre": "BLACK FORMAL",
+        "precio": 999,
+        "imagen": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=688&q=80",
+        "colores": ["#000000", "#1C4B62", "#E8A519"],
+        "categoria": "formal",
+        "tipo": "manga-larga",
+        "descripcion": "Elegancia negra para ocasiones especiales. Corte moderno y ajustado.",
+        "tag": "NEW"
+    }
+]

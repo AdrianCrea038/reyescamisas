@@ -1,0 +1,82 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+collections:
+  - name: "productos"
+    label: "Productos"
+    folder: "data/productos"
+    create: true
+    slug: "{{id}}"
+    fields:
+      - { label: "ID", name: "id", widget: "number", required: true }
+      - { label: "Nombre", name: "nombre", widget: "string", required: true }
+      - { label: "Precio", name: "precio", widget: "number", required: true, value_type: "int", min: 0 }
+      - { label: "Imagen", name: "imagen", widget: "image", required: true, choose_url: true, allow_multiple: false }
+      - { label: "Descripción", name: "descripcion", widget: "text", required: true }
+      - { label: "Categoría", name: "categoria", widget: "select", options: ["casual", "formal"], required: true }
+      - { label: "Tipo", name: "tipo", widget: "select", options: ["manga-corta", "manga-larga"], required: true }
+      - { label: "Tag", name: "tag", widget: "select", options: ["NEW", "HOT", "LIMITED"], required: false }
+      - { 
+          label: "Colores", 
+          name: "colores", 
+          widget: "list", 
+          required: true,
+          field: { label: "Color", name: "color", widget: "string" }
+        }
+
+  - name: "configuracion"
+    label: "Configuración del Sitio"
+    files:
+      - name: "site-config"
+        label: "Configuración General"
+        file: "data/site-config.json"
+        fields:
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Título", name: "titulo", widget: "string" }
+              - { label: "Título Resaltado", name: "tituloResaltado", widget: "string" }
+              - { label: "Subtítulo", name: "subtitulo", widget: "string" }
+              - { label: "Imagen de Fondo", name: "imagen", widget: "image", choose_url: true }
+              - { label: "Texto del Botón", name: "botonTexto", widget: "string" }
+          
+          - label: "Redes Sociales"
+            name: "redesSociales"
+            widget: "list"
+            fields:
+              - { label: "Nombre", name: "nombre", widget: "string" }
+              - { label: "Icono (FontAwesome)", name: "icono", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Activo", name: "activo", widget: "boolean", default: true }
+          
+          - label: "Contacto"
+            name: "contacto"
+            widget: "object"
+            fields:
+              - { label: "Teléfono", name: "telefono", widget: "string" }
+              - { label: "WhatsApp (solo números)", name: "whatsapp", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Ubicación", name: "ubicacion", widget: "string" }
+          
+          - label: "Moneda"
+            name: "moneda"
+            widget: "object"
+            fields:
+              - { label: "Símbolo", name: "simbolo", widget: "string", default: "$" }
+              - { label: "Código", name: "codigo", widget: "string", default: "MXN" }
+              - { label: "Posición", name: "posicion", widget: "select", options: ["antes", "despues"] }
+          
+          - label: "Textos Personalizables"
+            name: "textos"
+            widget: "object"
+            fields:
+              - { label: "Botón WhatsApp (tarjeta)", name: "btnWhatsapp", widget: "string" }
+              - { label: "Botón Consultar (modal)", name: "btnConsultar", widget: "string" }
+              - { label: "Título Newsletter", name: "newsletterTitulo", widget: "string" }
+              - { label: "Texto Newsletter", name: "newsletterTexto", widget: "string" }
+              - { label: "Botón Newsletter", name: "newsletterBoton", widget: "string" }

@@ -1,0 +1,11 @@
+{
+    "id": 4,
+    "nombre": "BLACK FORMAL",
+    "precio": 999,
+    "imagen": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=688&q=80",
+    "colores": ["#000000", "#1C4B62", "#E8A519"],
+    "categoria": "formal",
+    "tipo": "manga-larga",
+    "descripcion": "Elegancia negra para ocasiones especiales. Corte moderno y ajustado.",
+    "tag": "NEW"
+}

@@ -1,0 +1,11 @@
+{
+    "id": 3,
+    "nombre": "LINEN KING",
+    "precio": 799,
+    "imagen": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?ixlib=rb-4.0.3&auto=format&fit=crop&w=880&q=80",
+    "colores": ["#E8A519", "#CD3318", "#1C4B62"],
+    "categoria": "casual",
+    "tipo": "manga-larga",
+    "descripcion": "Lino natural, para los reyes del verano. Fresca y elegante.",
+    "tag": "LIMITED"
+}

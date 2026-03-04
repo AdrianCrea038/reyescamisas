@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel Reyes - Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1C4B62;
+            color: white;
+        }
+        
+        .admin-header {
+            background: #0a2a35;
+            border-bottom: 3px solid #E8A519;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+        }
+        
+        .logo span {
+            color: #E8A519;
+        }
+        
+        .admin-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .admin-btn {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 2px solid #E8A519;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-btn:hover {
+            background: #E8A519;
+            color: #1C4B62;
+        }
+        
+        .admin-btn.danger {
+            border-color: #CD3318;
+        }
+        
+        .admin-btn.danger:hover {
+            background: #CD3318;
+        }
+        
+        .admin-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .admin-card {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid #E8A519;
+            padding: 2rem;
+        }
+        
+        .admin-card h2 {
+            color: #E8A519;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #E8A519;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid transparent;
+            color: white;
+            font-family: 'Rubik', sans-serif;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #E8A519;
+        }
+        
+        .form-group input[type="color"] {
+            height: 50px;
+            padding: 0.2rem;
+        }
+        
+        .color-list {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        
+        .color-tag {
+            background: rgba(232,165,25,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .color-tag span {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        
+        .color-tag button {
+            background: none;
+            border: none;
+            color: #CD3318;
+            cursor: pointer;
+        }
+        
+        .btn-add {
+            background: #E8A519;
+            color: #1C4B62;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        
+        .btn-save {
+            background: #E8A519;
+            color: #1C4B62;
+            border: none;
+            padding: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        
+        .producto-item {
+            background: rgba(255,255,255,0.03);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid #E8A519;
+        }
+        
+        .producto-actions button {
+            background: none;
+            border: none;
+            color: #E8A519;
+            cursor: pointer;
+            margin-left: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .producto-actions button.delete {
+            color: #CD3318;
+        }
+        
+        .producto-form {
+            display: none;
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .producto-form.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header class="admin-header">
+        <div class="logo">
+            REYES<span>.</span> ADMIN
+        </div>
+        <div class="admin-actions">
+            <a href="/" class="admin-btn"><i class="fas fa-eye"></i> VER SITIO</a>
+            <button onclick="cerrarSesion()" class="admin-btn danger"><i class="fas fa-sign-out-alt"></i> SALIR</button>
+        </div>
+    </header>
+    
+    <div class="admin-container">
+        <h1 style="color: #E8A519; margin-bottom: 2rem;">👑 Panel de Control</h1>
+        
+        <div class="admin-grid">
+            <!-- Configuración General -->
+            <div class="admin-card">
+                <h2><i class="fas fa-cog"></i> Configuración General</h2>
+                
+                <div class="form-group">
+                    <label>Nombre del Sitio</label>
+                    <input type="text" id="siteName" value="REYES">
+                </div>
+                
+                <div class="form-group">
+                    <label>Slogan</label>
+                    <input type="text" id="siteSlogan" value="Urban streetwear para los que nacieron para destacar">
+                </div>
+                
+                <button class="btn-save" onclick="guardarConfigGeneral()">GUARDAR CAMBIOS</button>
+            </div>
+            
+            <!-- Hero Section -->
+            <div class="admin-card">
+                <h2><i class="fas fa-image"></i> Hero Section</h2>
+                
+                <div class="form-group">
+                    <label>Título</label>
+                    <input type="text" id="heroTitulo" value="VISTE COMO UN">
+                </div>
+                
+                <div class="form-group">
+                    <label>Palabra Resaltada</label>
+                    <input type="text" id="heroResaltado" value="REY">
+                </div>
+                
+                <div class="form-group">
+                    <label>Subtítulo</label>
+                    <input type="text" id="heroSubtitulo" value="Urban style para los que dominan la calle">
+                </div>
+                
+                <div class="form-group">
+                    <label>URL Imagen de Fondo</label>
+                    <input type="url" id="heroImagen" value="https://images.unsplash.com/photo-1441986300917-64674bd600d8">
+                </div>
+                
+                <div class="form-group">
+                    <label>Texto del Botón</label>
+                    <input type="text" id="heroBoton" value="VER COLECCIÓN">
+                </div>
+                
+                <button class="btn-save" onclick="guardarHero()">GUARDAR CAMBIOS</button>
+            </div>
+            
+            <!-- Contacto y Redes -->
+            <div class="admin-card">
+                <h2><i class="fas fa-phone"></i> Contacto</h2>
+                
+                <div class="form-group">
+                    <label>Teléfono</label>
+                    <input type="text" id="contactoTel" value="+52 123 456 7890">
+                </div>
+                
+                <div class="form-group">
+                    <label>WhatsApp (solo números)</label>
+                    <input type="text" id="contactoWpp" value="521234567890">
+                </div>
+                
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="contactoEmail" value="hola@reyes.mx">
+                </div>
+                
+                <div class="form-group">
+                    <label>Ubicación</label>
+                    <input type="text" id="contactoUbicacion" value="CDMX, México">
+                </div>
+                
+                <h3 style="color: #E8A519; margin: 1rem 0;">Redes Sociales</h3>
+                
+                <div class="form-group">
+                    <label>Instagram URL</label>
+                    <input type="url" id="socialIg" value="https://instagram.com/reyes.mx">
+                </div>
+                
+                <div class="form-group">
+                    <label>TikTok URL</label>
+                    <input type="url" id="socialTk" value="https://tiktok.com/@reyes.mx">
+                </div>
+                
+                <div class="form-group">
+                    <label>Facebook URL</label>
+                    <input type="url" id="socialFb" value="https://facebook.com/reyes.mx">
+                </div>
+                
+                <div class="form-group">
+                    <label>Twitter URL</label>
+                    <input type="url" id="socialTw" value="https://twitter.com/reyes.mx">
+                </div>
+                
+                <button class="btn-save" onclick="guardarContacto()">GUARDAR CAMBIOS</button>
+            </div>
+            
+            <!-- Moneda y Textos -->
+            <div class="admin-card">
+                <h2><i class="fas fa-dollar-sign"></i> Moneda y Textos</h2>
+                
+                <div class="form-group">
+                    <label>Símbolo de Moneda</label>
+                    <input type="text" id="monedaSimbolo" value="$">
+                </div>
+                
+                <div class="form-group">
+                    <label>Texto Botón WhatsApp</label>
+                    <input type="text" id="textoBtnWpp" value="LO QUIERO">
+                </div>
+                
+                <div class="form-group">
+                    <label>Texto Botón Modal</label>
+                    <input type="text" id="textoBtnModal" value="CONSULTAR POR WHATSAPP">
+                </div>
+                
+                <div class="form-group">
+                    <label>Título Newsletter</label>
+                    <input type="text" id="newsletterTitulo" value="¿Listo para ser un REY?">
+                </div>
+                
+                <div class="form-group">
+                    <label>Texto Newsletter</label>
+                    <input type="text" id="newsletterTexto" value="Suscríbete y recibe 10% de descuento">
+                </div>
+                
+                <button class="btn-save" onclick="guardarTextos()">GUARDAR CAMBIOS</button>
+            </div>
+        </div>
+        
+        <!-- Gestión de Productos -->
+        <div class="admin-card" style="margin-top: 2rem;">
+            <h2><i class="fas fa-tshirt"></i> Catálogo de Productos</h2>
+            
+            <button class="btn-add" onclick="mostrarFormularioProducto()">
+                <i class="fas fa-plus"></i> AGREGAR NUEVO PRODUCTO
+            </button>
+            
+            <!-- Formulario para nuevo producto -->
+            <div id="productoForm" class="producto-form">
+                <h3 style="color: #E8A519; margin-bottom: 1rem;">Nuevo Producto</h3>
+                
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" id="prodNombre" placeholder="Ej: CAMISA OXFORD WHITE">
+                </div>
+                
+                <div class="form-group">
+                    <label>Precio</label>
+                    <input type="number" id="prodPrecio" placeholder="899">
+                </div>
+                
+                <div class="form-group">
+                    <label>URL de Imagen</label>
+                    <input type="url" id="prodImagen" placeholder="https://...">
+                </div>
+                
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <textarea id="prodDescripcion" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Categoría</label>
+                    <select id="prodCategoria">
+                        <option value="casual">Street</option>
+                        <option value="formal">Elegante</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Tipo</label>
+                    <select id="prodTipo">
+                        <option value="manga-corta">Manga Corta</option>
+                        <option value="manga-larga">Manga Larga</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Tag (opcional)</label>
+                    <select id="prodTag">
+                        <option value="">Sin tag</option>
+                        <option value="NEW">NEW</option>
+                        <option value="HOT">HOT</option>
+                        <option value="LIMITED">LIMITED</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Colores (hexadecimal)</label>
+                    <input type="color" id="colorPicker" value="#E8A519">
+                    <button class="btn-add" onclick="agregarColor()" style="margin-top: 0.5rem;">
+                        <i class="fas fa-plus"></i> AGREGAR COLOR
+                    </button>
+                    <div id="coloresLista" class="color-list"></div>
+                </div>
+                
+                <button class="btn-save" onclick="guardarProducto()">GUARDAR PRODUCTO</button>
+            </div>
+            
+            <!-- Lista de productos -->
+            <div id="productosLista" style="margin-top: 2rem;">
+                <!-- Se llenará con JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let productos = [];
+        let coloresTemp = [];
+        
+        // Cargar datos guardados
+        function cargarDatos() {
+            // Cargar productos del localStorage
+            const productosGuardados = localStorage.getItem('reyesProductos');
+            if (productosGuardados) {
+                productos = JSON.parse(productosGuardados);
+            } else {
+                // Productos por defecto
+                productos = [
+                    {
+                        id: 1,
+                        nombre: "CAMISA OXFORD WHITE",
+                        precio: 899,
+                        imagen: "https://images.unsplash.com/photo-1603252109303-2751441dd157?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80",
+                        colores: ["#FFFFFF", "#000000", "#1C4B62"],
+                        categoria: "formal",
+                        tipo: "manga-larga",
+                        descripcion: "Oxford premium, para los que mandan.",
+                        tag: "NEW"
+                    },
+                    {
+                        id: 2,
+                        nombre: "STREET BLUE",
+                        precio: 699,
+                        imagen: "https://images.unsplash.com/photo-1598033121414-5e17e7f3a922?ixlib=rb-4.0.3&auto=format&fit=crop&w=735&q=80",
+                        colores: ["#1C4B62", "#E8A519", "#CD3318"],
+                        categoria: "casual",
+                        tipo: "manga-corta",
+                        descripcion: "Estilo urbano, vibra fresca.",
+                        tag: "HOT"
+                    }
+                ];
+            }
+            
+            actualizarListaProductos();
+            
+            // Cargar configuración
+            const config = JSON.parse(localStorage.getItem('reyesConfig')) || {};
+            
+            document.getElementById('siteName').value = config.siteName || 'REYES';
+            document.getElementById('siteSlogan').value = config.siteSlogan || 'Urban streetwear para los que nacieron para destacar';
+            document.getElementById('heroTitulo').value = config.heroTitulo || 'VISTE COMO UN';
+            document.getElementById('heroResaltado').value = config.heroResaltado || 'REY';
+            document.getElementById('heroSubtitulo').value = config.heroSubtitulo || 'Urban style para los que dominan la calle';
+            document.getElementById('heroImagen').value = config.heroImagen || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8';
+            document.getElementById('heroBoton').value = config.heroBoton || 'VER COLECCIÓN';
+            document.getElementById('contactoTel').value = config.contactoTel || '+52 123 456 7890';
+            document.getElementById('contactoWpp').value = config.contactoWpp || '521234567890';
+            document.getElementById('contactoEmail').value = config.contactoEmail || 'hola@reyes.mx';
+            document.getElementById('contactoUbicacion').value = config.contactoUbicacion || 'CDMX, México';
+            document.getElementById('socialIg').value = config.socialIg || 'https://instagram.com/reyes.mx';
+            document.getElementById('socialTk').value = config.socialTk || 'https://tiktok.com/@reyes.mx';
+            document.getElementById('socialFb').value = config.socialFb || 'https://facebook.com/reyes.mx';
+            document.getElementById('socialTw').value = config.socialTw || 'https://twitter.com/reyes.mx';
+            document.getElementById('monedaSimbolo').value = config.monedaSimbolo || '$';
+            document.getElementById('textoBtnWpp').value = config.textoBtnWpp || 'LO QUIERO';
+            document.getElementById('textoBtnModal').value = config.textoBtnModal || 'CONSULTAR POR WHATSAPP';
+            document.getElementById('newsletterTitulo').value = config.newsletterTitulo || '¿Listo para ser un REY?';
+            document.getElementById('newsletterTexto').value = config.newsletterTexto || 'Suscríbete y recibe 10% de descuento';
+        }
+        
+        function actualizarListaProductos() {
+            const lista = document.getElementById('productosLista');
+            lista.innerHTML = productos.map(p => `
+                <div class="producto-item">
+                    <div>
+                        <strong style="color: #E8A519;">${p.nombre}</strong>
+                        <br>
+                        <small>$${p.precio} | ${p.categoria} | ${p.tipo}</small>
+                    </div>
+                    <div class="producto-actions">
+                        <button onclick="editarProducto(${p.id})"><i class="fas fa-edit"></i></button>
+                        <button class="delete" onclick="eliminarProducto(${p.id})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function mostrarFormularioProducto() {
+            document.getElementById('productoForm').classList.add('active');
+            coloresTemp = [];
+            actualizarListaColores();
+        }
+        
+        function agregarColor() {
+            const color = document.getElementById('colorPicker').value;
+            coloresTemp.push(color);
+            actualizarListaColores();
+        }
+        
+        function actualizarListaColores() {
+            const lista = document.getElementById('coloresLista');
+            lista.innerHTML = coloresTemp.map(color => `
+                <div class="color-tag">
+                    <span style="background: ${color};"></span>
+                    ${color}
+                    <button onclick="eliminarColor('${color}')"><i class="fas fa-times"></i></button>
+                </div>
+            `).join('');
+        }
+        
+        function eliminarColor(color) {
+            coloresTemp = coloresTemp.filter(c => c !== color);
+            actualizarListaColores();
+        }
+        
+        function guardarProducto() {
+            const nuevoProducto = {
+                id: Date.now(),
+                nombre: document.getElementById('prodNombre').value,
+                precio: parseInt(document.getElementById('prodPrecio').value),
+                imagen: document.getElementById('prodImagen').value,
+                descripcion: document.getElementById('prodDescripcion').value,
+                categoria: document.getElementById('prodCategoria').value,
+                tipo: document.getElementById('prodTipo').value,
+                tag: document.getElementById('prodTag').value,
+                colores: coloresTemp.length ? coloresTemp : ['#E8A519']
+            };
+            
+            productos.push(nuevoProducto);
+            localStorage.setItem('reyesProductos', JSON.stringify(productos));
+            
+            actualizarListaProductos();
+            document.getElementById('productoForm').classList.remove('active');
+            
+            // Limpiar formulario
+            document.getElementById('prodNombre').value = '';
+            document.getElementById('prodPrecio').value = '';
+            document.getElementById('prodImagen').value = '';
+            document.getElementById('prodDescripcion').value = '';
+            coloresTemp = [];
+            actualizarListaColores();
+            
+            alert('Producto guardado correctamente');
+        }
+        
+        function eliminarProducto(id) {
+            if (confirm('¿Seguro que quieres eliminar este producto?')) {
+                productos = productos.filter(p => p.id !== id);
+                localStorage.setItem('reyesProductos', JSON.stringify(productos));
+                actualizarListaProductos();
+            }
+        }
+        
+        function editarProducto(id) {
+            alert('Función de edición - En la versión completa podrías editar el producto');
+        }
+        
+        function guardarConfigGeneral() {
+            const config = JSON.parse(localStorage.getItem('reyesConfig')) || {};
+            config.siteName = document.getElementById('siteName').value;
+            config.siteSlogan = document.getElementById('siteSlogan').value;
+            localStorage.setItem('reyesConfig', JSON.stringify(config));
+            alert('Configuración guardada');
+        }
+        
+        function guardarHero() {
+            const config = JSON.parse(localStorage.getItem('reyesConfig')) || {};
+            config.heroTitulo = document.getElementById('heroTitulo').value;
+            config.heroResaltado = document.getElementById('heroResaltado').value;
+            config.heroSubtitulo = document.getElementById('heroSubtitulo').value;
+            config.heroImagen = document.getElementById('heroImagen').value;
+            config.heroBoton = document.getElementById('heroBoton').value;
+            localStorage.setItem('reyesConfig', JSON.stringify(config));
+            alert('Hero section actualizado');
+        }
+        
+        function guardarContacto() {
+            const config = JSON.parse(localStorage.getItem('reyesConfig')) || {};
+            config.contactoTel = document.getElementById('contactoTel').value;
+            config.contactoWpp = document.getElementById('contactoWpp').value;
+            config.contactoEmail = document.getElementById('contactoEmail').value;
+            config.contactoUbicacion = document.getElementById('contactoUbicacion').value;
+            config.socialIg = document.getElementById('socialIg').value;
+            config.socialTk = document.getElementById('socialTk').value;
+            config.socialFb = document.getElementById('socialFb').value;
+            config.socialTw = document.getElementById('socialTw').value;
+            localStorage.setItem('reyesConfig', JSON.stringify(config));
+            alert('Contacto y redes actualizados');
+        }
+        
+        function guardarTextos() {
+            const config = JSON.parse(localStorage.getItem('reyesConfig')) || {};
+            config.monedaSimbolo = document.getElementById('monedaSimbolo').value;
+            config.textoBtnWpp = document.getElementById('textoBtnWpp').value;
+            config.textoBtnModal = document.getElementById('textoBtnModal').value;
+            config.newsletterTitulo = document.getElementById('newsletterTitulo').value;
+            config.newsletterTexto = document.getElementById('newsletterTexto').value;
+            localStorage.setItem('reyesConfig', JSON.stringify(config));
+            alert('Textos actualizados');
+        }
+        
+        function cerrarSesion() {
+            if (confirm('¿Cerrar sesión?')) {
+                localStorage.removeItem('reyesAdmin');
+                window.location.href = '/';
+            }
+        }
+        
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', cargarDatos);
+    </script>
+</body>
+</html>

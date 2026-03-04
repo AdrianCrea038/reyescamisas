@@ -1,0 +1,11 @@
+{
+    "id": 1,
+    "nombre": "CAMISA OXFORD WHITE",
+    "precio": 899,
+    "imagen": "https://images.unsplash.com/photo-1603252109303-2751441dd157?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80",
+    "colores": ["#FFFFFF", "#000000", "#1C4B62"],
+    "categoria": "formal",
+    "tipo": "manga-larga",
+    "descripcion": "Oxford premium, para los que mandan. Confeccionada con algodón egipcio para máximo confort.",
+    "tag": "NEW"
+}

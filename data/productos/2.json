@@ -1,0 +1,11 @@
+{
+    "id": 2,
+    "nombre": "STREET BLUE",
+    "precio": 699,
+    "imagen": "https://images.unsplash.com/photo-1598033121414-5e17e7f3a922?ixlib=rb-4.0.3&auto=format&fit=crop&w=735&q=80",
+    "colores": ["#1C4B62", "#E8A519", "#CD3318"],
+    "categoria": "casual",
+    "tipo": "manga-corta",
+    "descripcion": "Estilo urbano, vibra fresca. Perfecta para el día a día con un toque street.",
+    "tag": "HOT"
+}

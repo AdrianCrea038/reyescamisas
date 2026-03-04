@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reyes | Urban Streetwear</title>
+    <!-- Tipografía Rubik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Fondo con imagen y overlay -->
+    <div class="bg-overlay"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <h1>REYES<span>.</span></h1>
+            </div>
+            
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+         <ul class="nav-menu">
+    <li><a href="#inicio" class="active">Inicio</a></li>
+    <li><a href="#catalogo">Catálogo</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#" id="loginLink"><i class="fas fa-crown"></i> Login</a></li>
+    <!-- El botón de logout se agregará dinámicamente con JavaScript -->
+</ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">#STREETWEAR</div>
+            <h2 class="animate-text">VISTE COMO UN <span>REY</span></h2>
+            <p class="animate-text-delay">Urban style para los que dominan la calle</p>
+            <div class="hero-buttons">
+                <a href="#catalogo" class="btn-primary">VER COLECCIÓN <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Desliza</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Filtros -->
+    <section class="filtros-section">
+        <div class="container">
+            <div class="filtros-container">
+                <button class="filtro-btn active" data-filter="todos">Todos</button>
+                <button class="filtro-btn" data-filter="manga-corta">Manga Corta</button>
+                <button class="filtro-btn" data-filter="manga-larga">Manga Larga</button>
+                <button class="filtro-btn" data-filter="casual">Street</button>
+                <button class="filtro-btn" data-filter="formal">Elegante</button>
+            </div>
+            
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Buscar tu estilo...">
+            </div>
+        </div>
+    </section>
+
+    <!-- Catálogo de Productos -->
+    <section id="catalogo" class="catalogo">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">ÚLTIMOS <span>DROPS</span></h2>
+                <div class="section-subtitle">Lo más fresco de la temporada</div>
+            </div>
+            <div id="productos-grid" class="productos-grid">
+                <!-- Los productos se cargarán aquí dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-truck"></i>
+                    <h3>Envíos a todo México</h3>
+                    <p>Recibe tu estilo donde quieras</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Compra segura</h3>
+                    <p>Tus datos protegidos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h3>¿Listo para ser un REY?</h3>
+                <p>Suscríbete y recibe 10% de descuento en tu primera compra</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Tu mejor email" required>
+                    <button type="submit">QUIERO SER REY <i class="fas fa-crown"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/521234567890?text=¡Reyes!%20Quiero%20saber%20más%20sobre%20sus%20camisas%20👑" 
+       class="whatsapp-float" 
+       target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content login-modal">
+            <span class="close-modal" onclick="cerrarLoginModal()">&times;</span>
+            <div class="login-header">
+                <i class="fas fa-crown"></i>
+                <h2>Acceso REYES</h2>
+                <p>Solo para la realeza</p>
+            </div>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" placeholder="Usuario" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Contraseña" required>
+                </div>
+                <button type="submit" class="btn-login">ACCEDER <i class="fas fa-arrow-right"></i></button>
+            </form>
+            <div class="login-info">
+                <p><i class="fas fa-info-circle"></i> Demo: admin / reyes2026</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>REYES<span>.</span></h3>
+                    <p>Urban streetwear para los que nacieron para destacar. Moda con actitud para la nueva generación.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Explora</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#catalogo">Catálogo</a></li>
+                        <li><a href="#">Nuevos Drops</a></li>
+                        <li><a href="#">Limited Edition</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Ayuda</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Envíos</a></li>
+                        <li><a href="#">Cambios</a></li>
+                        <li><a href="#">Términos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-phone"></i> +52 123 456 7890</p>
+                    <p><i class="fab fa-whatsapp"></i> +52 123 456 7890</p>
+                    <p><i class="fas fa-envelope"></i> hola@reyes.mx</p>
+                    <p><i class="fas fa-map-marker-alt"></i> CDMX, México</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 REYES. Todos los derechos reservados. Hecho para reyes 👑</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
