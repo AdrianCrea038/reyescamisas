@@ -504,11 +504,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0.5rem;
 }
 
-.producto-precio::before {
-    content: '$';
-    font-size: 1rem;
-    margin-right: 0.2rem;
-}
+/* SIGNO DE DÓLAR ELIMINADO - Ahora el símbolo viene del JavaScript */
 
 .producto-colores {
     display: flex;
@@ -1301,6 +1297,97 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 1px;
 }
 
+/* Botón para editar imagen del hero */
+.admin-edit-image {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--amarillo);
+    color: var(--azul-profundo);
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    border: 2px solid var(--blanco);
+}
+
+.admin-edit-image:hover {
+    transform: translateX(-50%) scale(1.05);
+    background: var(--azul-profundo);
+    color: var(--amarillo);
+    border-color: var(--amarillo);
+}
+
+.admin-edit-image i {
+    font-size: 1.2rem;
+}
+
+/* Estilo para elementos del footer editables */
+.footer-section p.editable {
+    position: relative;
+    padding-right: 25px;
+}
+
+.footer-section p.editable:hover {
+    background: rgba(232, 165, 25, 0.1);
+    border-radius: 5px;
+}
+
+.footer-section p.editable::after {
+    content: '\f044';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--amarillo);
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.footer-section p.editable:hover::after {
+    opacity: 1;
+}
+
+/* Estilo para precios editables */
+.producto-precio.editable {
+    position: relative;
+    padding-right: 30px;
+    display: inline-block;
+}
+
+.producto-precio.editable:hover {
+    background: rgba(232, 165, 25, 0.1);
+    border-radius: 5px;
+}
+
+.producto-precio.editable::after {
+    content: '\f044';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--amarillo);
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.producto-precio.editable:hover::after {
+    opacity: 1;
+}
+
 /* Animaciones */
 @keyframes fadeInUp {
     from {
@@ -1530,128 +1617,4 @@ h1, h2, h3, h4, h5, h6 {
         break-inside: avoid;
         border: 1px solid #ccc;
     }
-}
-/* Botón para editar imagen del hero */
-.admin-edit-image {
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--amarillo);
-    color: var(--azul-profundo);
-    padding: 0.8rem 1.5rem;
-    border-radius: 30px;
-    font-weight: 600;
-    cursor: pointer;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-    border: 2px solid var(--blanco);
-}
-
-.admin-edit-image:hover {
-    transform: translateX(-50%) scale(1.05);
-    background: var(--azul-profundo);
-    color: var(--amarillo);
-    border-color: var(--amarillo);
-}
-
-.admin-edit-image i {
-    font-size: 1.2rem;
-}
-
-/* Estilo para elementos del footer editables */
-.footer-section p.editable {
-    position: relative;
-    padding-right: 25px;
-}
-
-.footer-section p.editable:hover {
-    background: rgba(232, 165, 25, 0.1);
-    border-radius: 5px;
-}
-
-.footer-section p.editable::after {
-    content: '\f044';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--amarillo);
-    font-size: 0.8rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.footer-section p.editable:hover::after {
-    opacity: 1;
-}
-
-/* Estilo para precios editables */
-.producto-precio.editable {
-    position: relative;
-    padding-right: 30px;
-    display: inline-block;
-}
-
-.producto-precio.editable:hover {
-    background: rgba(232, 165, 25, 0.1);
-    border-radius: 5px;
-}
-
-.producto-precio.editable::after {
-    content: '\f044';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--amarillo);
-    font-size: 0.8rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.producto-precio.editable:hover::after {
-    opacity: 1;
-}
-
-/* Modal para selección de moneda */
-.moneda-selector {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin: 2rem 0;
-}
-
-.moneda-opcion {
-    background: rgba(255,255,255,0.1);
-    border: 2px solid var(--amarillo);
-    padding: 1rem;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.moneda-opcion:hover {
-    background: var(--amarillo);
-    color: var(--azul-profundo);
-    transform: scale(1.05);
-}
-
-.moneda-opcion .simbolo {
-    font-size: 2rem;
-    font-weight: 900;
-    display: block;
-}
-
-.moneda-opcion .codigo {
-    font-size: 0.9rem;
-    opacity: 0.8;
 }
